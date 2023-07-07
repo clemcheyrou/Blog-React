@@ -50,6 +50,11 @@ const Blogslist = () => {
                 <div key={blog.id}>
 					<p>Title : {blog.Title}</p>
 					<p>body: {blog.Body} </p>
+					{blog.CoverImg
+					?<>
+					<img src={blog.CoverImg}/>
+					:null
+					}
 					<Link to={"/show/"+blog.id}>View</Link>
 					<Link to={"/Editblog/"+blog.id}>Edit</Link>
 					<button 

@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
 
 firebase.initializeApp({
 	apiKey: "AIzaSyAM2ruRtvaVL09FlfrIgiKHjflNhcmQmCw",
@@ -9,7 +10,8 @@ firebase.initializeApp({
 	storageBucket: "myblogsite-react.appspot.com",
 	messagingSenderId: "282198458772",
 	appId: "1:282198458772:web:42b462cfa6b6e20f414f81",
-	measurementId: "G-F1GNCHGCTX"
+	measurementId: "G-F1GNCHGCTX",
+	storageBucket: 'myblogsite-react.appspot.com'
 });
 
 const fb = firebase;

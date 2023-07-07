@@ -15,10 +15,12 @@ const BlogView = () => {
 		SetBlogs(data);
 	});
 
+	const body = blogs.Body;
+
 	return (
 		<div>
 			<p>Title: {blogs.Title}</p>
-			<p>Body: {blogs.Body}</p>
+			<div  dangerouslySetInnerHTML={{__html: body}} />
 		</div>
 	 );
 };

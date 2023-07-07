@@ -34,10 +34,10 @@ const Blogslist = () => {
         <h2 className="w-full text-center font-bold text-xl">All blogs List</h2>
             {blogslist.map(blog=> (
                 <div key={blog.id}>
-    				<p>Title : {blog.Title}</p>
-    				<p>body: {blog.Body} </p>
+					<p>Title : {blog.Title}</p>
+					<p>body: {blog.Body} </p>
 					<Link to={"/show/"+blog.id}>View</Link>
-					<Link to={"/editblog/"+blog.id}>Edit</Link>
+					<Link to={"/Editblog/"+blog.id}>Edit</Link>
 					<button 
                             onClick={()=> {DeleteBlog(blog.id)}} 
                         >delete</button>

@@ -1,57 +1,53 @@
-import React, { useState, useEffect} from "react";
-import{useParams} from 'react-router-dom';
+import React , {useState, useEffect} from "react";
+import { useParams } from 'react-router-dom';
 import fb from "./firebase";
 const DB =fb.firestore()
 const Blogslist = DB.collection('blogs');
 
 const BlogEdit = () => {
+    const { id } = useParams();
 
-	const {id} = useParams();
+    const [title , SetTitle] = useState("");
+	const [body , SetBody] = useState("");
 
-	const[title, SetTitle] = useState("");
-	const[body, SetBody] = useState("");
-
-	useEffect((id)=> {
-		Blogslist.doc(id).get().then((snapshot) => {
-			const data= snapshot.data();
-			SetTitle(data.Title);
-			SetBody(data.Body);
-		});
-	}, []);
-
-    const sub = (e) => {
+    useEffect( ()=> {
+        if (id) {
+            Blogslist.doc(id).get().then((snapshot) => {
+                const data = snapshot.data();
+                SetTitle(data.Title);
+                SetBody(data.Body);
+            });
+        }   
+    },[id]);
+        
+    const submit =(e)=> {
         e.preventDefault();
-
         Blogslist.doc(id).update({
             Title: title,
-            Body: body,
-            last_Updated: fb.firestore.Timestamp.fromDate(new Date())
+            Body: body
         })
-        .then((docRef) => {
-            alert("Data Successfully Updated");
+        .then((docRef)=> {
+            alert("data successfully submit")
         })
         .catch((error) => {
-            console.error("Error adding document: ", error);
+            console.error("error:", error);
         });
     }
-
-	return (
-		<div>
-        
-		<form onSubmit={(event) => {sub(event)}}>    
-            <input type="text" placeholder="Title"  value={title}
+    return(
+        <div>
+            
+            <form onSubmit={(event) => {submit(event)}}>    
+            <input type="text" placeholder="Title" value={title}
             onChange={(e)=>{SetTitle(e.target.value)}} required />
 
-            <textarea  name="content" type="text" value={body}
+            <textarea  name="content" type="text" value={body} 
             placeholder="write yoyr content here" 
             rows="10" cols="150" onChange={(e)=>{SetBody(e.target.value)}} required >
             </textarea>
 
             <button type="submit">Submit</button>
-		</form>
-
-		</div>
-	 );
+        </form>
+        </div>
+    );
 };
-
 export default BlogEdit;

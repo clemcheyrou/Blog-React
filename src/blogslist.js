@@ -8,6 +8,7 @@ const Blogs = DB.collection('blogs');
 const Blogslist = () => {
 
 	const [blogslist,SetBlogs]= useState([]);
+	const [search, SetSearch] = useState("");
 
 	useEffect(()=>{
 		const unsubscribe = Blogs.limit(100).onSnapshot(querySnapshot => {
@@ -28,9 +29,22 @@ const Blogslist = () => {
             console.error("Error removing document: ", error);
         });
     };
+
+	const SearchBlog=(e)=>{
+		e.preventDefault();
+		SetBlogs(blogslist.filter((blogslist)=>
+			blogslist.Title.toLowerCase().includes(search.toLocaleLowerCase()) ||
+			blogslist.Body.toLowerCase().includes(search.toLocaleLowerCase())
+		));
+
+	};
 	
 	return ( 
 		<div>
+			<form onSubmit={(e)=>{SearchBlog(e)}}>
+					<input onChange={(e)=>{SetSearch(e.target.value)}}/>
+					<button type="submit">Search</button>	
+			</form>
         <h2 className="w-full text-center font-bold text-xl">All blogs List</h2>
             {blogslist.map(blog=> (
                 <div key={blog.id}>

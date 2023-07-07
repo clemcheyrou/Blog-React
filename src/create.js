@@ -24,7 +24,6 @@ const CreateBlog = () =>
         e.preventDefault();
         const uploadTask = storageRef.child('images/' + cover.name).put(cover);
         uploadTask.on(
-            'state_changed', 
             snapshot => {},
             error => {
                 console.log(error);

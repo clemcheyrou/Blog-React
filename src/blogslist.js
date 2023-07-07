@@ -52,17 +52,17 @@ const Blogslist = () => {
 					<p>body: {blog.Body} </p>
 					{blog.CoverImg
 					?<>
-					<img src={blog.CoverImg}/>
+						<img src={blog.CoverImg} alt="cover"/>
+					</>
 					:null
 					}
 					<Link to={"/show/"+blog.id}>View</Link>
 					<Link to={"/Editblog/"+blog.id}>Edit</Link>
-					<button 
-                            onClick={()=> {DeleteBlog(blog.id)}} 
-                        >delete</button>
-				</div>          
-            ))}
-    </div>
+					<button onClick={()=> {DeleteBlog(blog.id)}}>delete</button>        
+            </div>
+			))}
+
+    	</div>
     );	
 };
  

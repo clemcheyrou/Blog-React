@@ -11,7 +11,6 @@ firebase.initializeApp({
 	messagingSenderId: "282198458772",
 	appId: "1:282198458772:web:42b462cfa6b6e20f414f81",
 	measurementId: "G-F1GNCHGCTX",
-	storageBucket: 'myblogsite-react.appspot.com'
 });
 
 const fb = firebase;

@@ -1,7 +1,6 @@
 import React , {useState} from "react";
 import { Editor } from '@tinymce/tinymce-react';
 import fb from "./firebase";
-import userEvent from "@testing-library/user-event";
 import useAuthState from "./hooks";
 
 const DB =fb.firestore();

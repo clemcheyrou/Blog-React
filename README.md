@@ -1,7 +1,8 @@
 # Projet de Blog React avec Firebase
-***
 
-**Lien direct : reactblog-clemcheyrou.netlify.app**
+**Lien direct : [reactblog-clemcheyrou.netlify.app]**
+
+***
 
 Ce projet est un exemple d'application de blog créée avec React et Firebase. Il m'a permis de découvrir comment utiliser Firebase en tant que base de données pour stocker des articles et des images, ainsi que l'utilisation de fonctionnalités telles que l'authentification des utilisateurs, les likes et les commentaires.
 

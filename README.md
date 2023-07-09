@@ -1,6 +1,6 @@
 # Projet de Blog React avec Firebase
 
-**Lien direct : [reactblog-clemcheyrou.netlify.app]**
+**[Lien direct](reactblog-clemcheyrou.netlify.app)**
 
 ***
 

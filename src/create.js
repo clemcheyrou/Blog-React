@@ -1,6 +1,8 @@
 import React , {useState} from "react";
 import { Editor } from '@tinymce/tinymce-react';
 import fb from "./firebase";
+import userEvent from "@testing-library/user-event";
+import useAuthState from "./hooks";
 
 const DB =fb.firestore();
 const Blogslist = DB.collection('blogs');
@@ -10,6 +12,7 @@ const storageRef = fb.storage().ref();
 
 const CreateBlog = () => 
 {
+    const {user,initializing} = useAuthState(fb.auth());
     const[title, SetTitle] = useState("");
     const[body, SetBody] = useState("");
     const[cover, SetCover] = useState(null);
@@ -24,6 +27,7 @@ const CreateBlog = () =>
         e.preventDefault();
         const uploadTask = storageRef.child('images/' + cover.name).put(cover);
         uploadTask.on(
+            'state_changed',
             snapshot => {},
             error => {
                 console.log(error);
@@ -35,6 +39,8 @@ const CreateBlog = () =>
                         Title: title,
                         Body: body,
                         CoverImg: url,
+                        author: user.uid
+
                     }).then((docRef)=> {
                         alert("data successfully submit")
                     }).catch((error) => {
@@ -45,7 +51,11 @@ const CreateBlog = () =>
             }
         )
         }
-
+    if (initializing)
+    {
+       return 'loading...';
+    }
+    
     return(
         <div>
             <form onSubmit={(event) => {submit(event)}}>    

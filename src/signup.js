@@ -9,7 +9,7 @@ export default function Signin () {
 
 		try
 		{
-			await fb.signinwithRedirect(provider);
+			await fb.auth().signInWithRedirect(provider);
 		} 
 		catch (error)
 		{
@@ -23,10 +23,21 @@ export default function Signin () {
 	}
 
 	return(
-		<div className="mt-20 text-center">
-			<button className="border-2 border-black"
-			onClick={signinwithGoogle}
-			>Sign in with Google</button>
+		<div>
+			{user 
+			?
+			<div className="mt-20 text-center">
+				<img src={user.photoURL} alt="user" className="w-12 h-12 mx-auto"/>
+				<p>{user.displayName}</p>
+			</div>
+			:
+			<div className="mt-20 text-center">
+				<button className="border-2 border-black"
+				onClick={signinwithGoogle}
+				>Sign in with Google</button>
+			</div>
+			}
 		</div>
+
 	);
 }
